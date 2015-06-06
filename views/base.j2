@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>{{ title }}</title>
+  </header>
+  <body>
+    <div>
+      <header>
+	<h1><a href="/">{{ title }}</a></h1>
+      </header>
+      
+      <av-item name="test"></av-item>
+
+      <div id="content">
+	{% block content %}{% endblock %}
+      </div>
+
+      <footer>
+	<p>(C) 2015 Team BWH</p>
+      </footer>
+    </div>
+  </body>
+</html>
