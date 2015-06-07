@@ -13,14 +13,14 @@
 
 ### Hinako API
 
+    $ cd hinako_api
+    $ ./hinako_api.py
+
 * Please change some port settings in hinako.py:
   - Arduino port number
   - Bust servo motor port number
   - Waist DC motor port number
   - Hip servo motor port number
-
-    $ cd hinako_api
-    $ ./hinako_api.py
 
 
 ### Measurements API
