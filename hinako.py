@@ -13,9 +13,9 @@ class Hinako:
         s: servo control
         '''
 
-        self.b_pin_id = b_pin_id
-        self.w_pin_id = w_pin_id
-        self.h_pin_id = h_pin_id
+        self.b_pin = self.board.get_pin(b_pin_id)
+        self.w_pin = self.board.get_pin(w_pin_id)
+        self.h_pin = self.board.get_pin(h_pin_id)
 
         self.b = 0
         self.w = 0
@@ -32,17 +32,17 @@ class Hinako:
             time.sleep(ds)
 
     def set_bust(self, val):
-        pin = self.board.get_pin(self.b_pin_id)
-        self._move_servo(pin, self.w, val)
+        self._move_servo(self.b_pin, self.w, val)
         self.w = val
         
     def set_waist(self, val):
-        pin = self.board.get_pin(self.w_pin_id)
-        # dc motor
+        '''
+        dc motor
+        self.w_pin
+        '''
 
     def set_hip(self, val):
-        pin = self.board.get_pin(self.h_pin_id)        
-        self._move_servo(pin, self.h, val)
+        self._move_servo(self.h_pin, self.h, val)
         self.h = val
 
 
