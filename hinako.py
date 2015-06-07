@@ -12,7 +12,6 @@ class Hinako:
         n: number PWM pin
         s: servo control
         '''
-
         self.b_pin = self.board.get_pin(b_pin_id)
         self.w_pin = self.board.get_pin(w_pin_id)
         self.h_pin = self.board.get_pin(h_pin_id)
