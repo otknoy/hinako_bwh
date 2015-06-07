@@ -30,7 +30,8 @@ class Hinako:
             pin.write(i)
             time.sleep(ds)
 
-    def set_bust(self, val):
+    def set_bust(self, size_cm):
+        val = map_value(size_cm, 80, 90, 40, 0)
         self._move_servo(self.b_pin, self.w, val)
         self.w = val
         
@@ -44,14 +45,14 @@ class Hinako:
         self._move_servo(self.h_pin, self.h, val)
         self.h = val
 
-
-def map_value(val, val_min, val_max, target_min, target_max):
-    ratio = (val - val_min) / float(val_max - val_min)
-    target = ratio * (target_max - target_min) - target_min
-    return target
+def map_value(value, begin1, end1, begin2, end2):
+    return begin2 + (end2 - begin2) * ((value - begin1) / (end1 - begin1));
 
 
 if __name__ == '__main__':
+    print map_value(50, 0, 100, 0, 255)
+    print map_value(50, 0, 100, 255, 0)
+
 
     port = '/dev/cu.usbmodemfa131'
     hinako = Hinako(port, 'd:3:s', 'd:4:s', 'd:5:s')
