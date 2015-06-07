@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import time
-import math
 from pyfirmata import Arduino, util
 
 def map_value(val, val_min, val_max, target_min, target_max):
