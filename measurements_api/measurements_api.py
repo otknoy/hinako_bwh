@@ -10,11 +10,16 @@ from get_bwh import get_bwh
 def server_static(filepath):
     return static_file(filepath, root='./static')
 
-@route('/')
-def main():
+@route('/<name>')
+def index(name):
+    b, w, h = get_bwh(name)
+    return '{"name": %s, "bust": %s, "waist": %s, "hip": %s}' % (name, b, w, h)
+
+@route('util')
+def util():
     return template('index.j2', title="Yahoo! Japan", default_keyword=u"佐野ひなこ")
 
-@route('/search', method='GET')
+@route('/util/search', method='GET')
 def search():
     query = (request.query).query
 
