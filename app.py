@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from bottle import route, run, template, request, static_file, redirect
+from bottle import route, run, template, request, static_file
 from bottle import TEMPLATE_PATH, jinja2_template as template
 TEMPLATE_PATH.append('./views')
 
 from get_bwh import get_bwh
-
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
