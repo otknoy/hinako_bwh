@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from bottle import route, run, request
+from bottle import route, run, request, hook, response
 
 from hinako import Hinako
 
 port = '/dev/cu.usbmodemfd121'
 hinako = Hinako(port, 'd:3:s', 'd:4:s', 'd:5:s')
+
+
+@hook('after_request')
+def enable_cors():
+    response.headers['Access-Control-Allow-Origin'] = '*'
+
 
 # Hinako API
 @route('/hinako', method='GET')
@@ -19,8 +25,8 @@ def index():
     h = int(query.h)
 
     hinako.set_bust(b)
-    hinako.set_waist(w)
-    hinako.set_hip(h)
+    # hinako.set_waist(w)
+    # hinako.set_hip(h)
 
     return 'hinako!'
 

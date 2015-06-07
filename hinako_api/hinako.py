@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import math
 import time
 from pyfirmata import Arduino, util
 
@@ -31,7 +32,8 @@ class Hinako:
             time.sleep(ds)
 
     def set_bust(self, size_cm):
-        val = map_value(size_cm, 80, 90, 40, 0)
+        print "bust: %d cm" % size_cm
+        val = int(round(map_value(size_cm, 70, 90, 60, 20)))
         self._move_servo(self.b_pin, self.w, val)
         self.w = val
         
@@ -46,7 +48,7 @@ class Hinako:
         self.h = val
 
 def map_value(value, begin1, end1, begin2, end2):
-    return begin2 + (end2 - begin2) * ((value - begin1) / (end1 - begin1));
+    return begin2 + (end2 - begin2) * ((value - begin1) / float(end1 - begin1));
 
 
 if __name__ == '__main__':
@@ -54,9 +56,10 @@ if __name__ == '__main__':
     print map_value(50, 0, 100, 255, 0)
 
 
-    port = '/dev/cu.usbmodemfa131'
+    port = '/dev/cu.usbmodemfd121'
     hinako = Hinako(port, 'd:3:s', 'd:4:s', 'd:5:s')
 
-    hinako.set_bust(127)
+    # 70-80
+    hinako.set_bust(90)
     # hinako.set_waist(127)
     # hinako.set_hip(127)
