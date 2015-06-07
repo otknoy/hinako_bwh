@@ -28,13 +28,14 @@ class Hinako:
         print step
 
         for i in range(begin_val, end_val, step):
+            print i
             pin.write(i)
             time.sleep(ds)
 
-    def set_bust(self, size_cm):
+    def set_bust(self, size_cm, ds=0.1):
         print "bust: %d cm" % size_cm
-        val = int(round(map_value(size_cm, 70, 90, 60, 20)))
-        self._move_servo(self.b_pin, self.w, val)
+        val = int(round(map_value(size_cm, 70, 100, 65, 0)))
+        self._move_servo(self.b_pin, self.w, val, ds=ds)
         self.w = val
         
     def set_waist(self, val):
@@ -52,14 +53,19 @@ def map_value(value, begin1, end1, begin2, end2):
 
 
 if __name__ == '__main__':
-    print map_value(50, 0, 100, 0, 255)
-    print map_value(50, 0, 100, 255, 0)
+    # print map_value(50, 0, 100, 0, 255)
+    # print map_value(50, 0, 100, 255, 0)
 
 
     port = '/dev/cu.usbmodemfd121'
     hinako = Hinako(port, 'd:3:s', 'd:4:s', 'd:5:s')
 
     # 70-80
-    hinako.set_bust(90)
-    # hinako.set_waist(127)
-    # hinako.set_hip(127)
+    size_list= range(70, 100, 5)
+    size_list= [70, 90]
+
+    while 1:
+        for s in size_list:
+            hinako.set_bust(s, ds=0.01)
+
+            time.sleep(0.5)
