@@ -19,9 +19,9 @@ WHERE {
 
 
     for result in results["results"]["bindings"]:
-        b = int(result['b']['value'])
-        w = int(result['w']['value'])
-        h = int(result['h']['value'])
+        b = float(result['b']['value'])
+        w = float(result['w']['value'])
+        h = float(result['h']['value'])
         return b, w, h
 
 
