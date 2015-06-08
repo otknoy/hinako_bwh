@@ -36,8 +36,8 @@ def index(name):
 
 
 # Both
-@route('query/<name>')
-def query(name):
+@route('/query/<name>')
+def index(name):
     b, w, h = get_bwh(name)
     hinako.set_bust(b)
     return '{"name": %s, "bust": %s, "waist": %s, "hip": %s}' % (name, b, w, h)
